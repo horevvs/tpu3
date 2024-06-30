@@ -72,6 +72,8 @@ export const OpemModal = styled.div`
  padding:7%;
  height:800px;
  align-items: center;
+ overflow: hidden;
+
 
  `;
 
