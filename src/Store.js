@@ -13,8 +13,13 @@ let initstate = {
     // тут храним наши данные с урла
     count: result.data,
     // этот состояние используем в молаьном окрне чтобы не делать  подъем состояния или usecontext
-    shows:true,
-   
+    shows: true,
+
+    result2: []
+
 }
+
+
+// console.log(initstate.result2)
 
 export default initstate

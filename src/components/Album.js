@@ -13,6 +13,8 @@ function AlbumsList() {
 
     //  пробрасываем со сторы наше значение
     const shows = useSelector(state => state.shows)
+    const result2 = useSelector(state => state.result2)
+
     // const result = useSelector(state => state. result)
 
     const dispatch = useDispatch()
@@ -37,20 +39,6 @@ function AlbumsList() {
                 console.log(error);
             });
 
-            // fetch('https://jsonplaceholder.typicode.com/photos', {
-            //     method: 'POST',
-            //     body: JSON.stringify({
-            //       title: 'foo',
-            //       body: 'bar',
-            //       userId: 1,
-            //     }),
-            //     headers: {
-            //       'Content-type': 'application/json; charset=UTF-8',
-            //     },
-            //   })
-            //     .then((response) => response.json())
-            //     .then((json) => console.log(json));
-
     }, [params]);
 
 
@@ -64,6 +52,18 @@ function AlbumsList() {
     const hidewindow = () => {
         dispatch({ type: 'close' })
     }
+
+    const add = (albumId, id, title, url, thumbnailUrl) => {
+        dispatch({ type: 'add', payload:{albumId, id, title, url, thumbnailUrl},  })
+    }
+
+
+    const deleteimage = (id) => {
+        let result = data.filter(item => item.id !== id)
+        setData(result)
+    };
+
+    console.log(result2)
 
 
     return (
@@ -96,10 +96,12 @@ function AlbumsList() {
                             </Thumbnail>
                             <p >Альбом №{item.albumId}</p>
                             <p>фото номер {item.id}</p>
-                            <Btn> удалить2</Btn>
+                            <Btn onClick={() => { deleteimage(item.id) }}   >   удалить</Btn>
+                             {/* переписать чтобы все получаал с инпутов */}
+                            <Btn onClick={() => add(item.albumId, item.id, item.title, item.url, item.thumbnailUrl)} >  проверить</Btn>
                         </Img>
                     ))}
-                </Container >
+                </Container>
             </div>
         </>
     );

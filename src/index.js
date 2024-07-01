@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import Store from './Store'
@@ -12,9 +11,17 @@ import Store from './Store'
 const reducer = (state = Store, action) => {
   switch (action.type) {
     case 'close': {
-      return {...state, shows:!state.shows  }
+      return { ...state, shows: !state.shows }
     }
- 
+
+    case 'add': {
+      return {
+        ...state, result2: state.result2.concat(
+          action.payload,
+        )
+      }
+    }
+
     default: return state
   }
 };

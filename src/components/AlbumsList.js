@@ -18,10 +18,10 @@ function AlbumsList() {
                 {count.map((item) => (
                     <FlexContainer key={item.id}>
                         <Cartcontainer>
-                            < Textcss>
+                            <Textcss>
                                 Альбом № {item.id} <br />
                             </Textcss>
-                            < Textcss>
+                            <Textcss>
                                 Название альбома: <br /> {item.title}
                             </Textcss>
                             {/* переходим по нагашему новому урлу чтобы отобразить  альбом */}
@@ -29,7 +29,7 @@ function AlbumsList() {
                         </Cartcontainer>
                     </FlexContainer>
                 ))}
-            </Container >
+            </Container>
         </>
     );
 }
