@@ -14,13 +14,12 @@ function AlbumsList() {
 
     //  пробрасываем со сторы наше значение
     const shows = useSelector(state => state.shows)
-    const albumslist = useSelector(state => state.albumslist)
+
 
     const dispatch = useDispatch()
 
     //  инициализируем наши состояния
     const [data, setData] = useState([]);
-    const [data2, setData2] = useState([]);
     const [digit, setdigit] = useState([]);
     const [digit2, setdigit2] = useState([]);
     const params = useParams();
@@ -36,35 +35,28 @@ function AlbumsList() {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
-
-    console.log(albumslist)
+    }, [params]);
 
 
     const add = (title, url) => {
         //  отправили во внешнем сторе создаем массив добавленных картинок
-        // dispatch({ type: 'add', payload: { title, url }, })
-
+        dispatch({ type: 'add', payload: { title, url }, })
+        let ds = data[data.length-1].id
+       
+        
         let result = {
-            id: data.length,
+            id:  ds+1,
             title: title,
             url: url,
             thumbnailUrl: url
         }
         let b = []
         b[0] = result
-
-
         setData([...data, ...b])
-        console.log(data)
+
+        console.log(data);
 
     }
-
-
-
-
-
-
 
     // функция для работы с модалкой в модалку прокидываем адрес и название
     const openwindow = (url, id) => {
@@ -72,21 +64,16 @@ function AlbumsList() {
         setdigit2(id)
     };
 
-
     // функция для работы с состоянием в редаксе, в редюсере меняет состояние
     const hidewindow = () => {
         dispatch({ type: 'close' })
     }
-
-
     const deleteimage = (id) => {
         let result = data.filter(item => item.id !== id)
         //  ложим результат в хранилице
 
         setData(result)
     };
-
-
 
     return (
         <>
