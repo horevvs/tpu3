@@ -8,5 +8,9 @@
 .name{
   background-color: aqua;
 }
+.form-container{
+  display: flex;
+  justify-content: center;
+}
 
 

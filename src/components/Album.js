@@ -8,38 +8,62 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import Modal from './Modal.js'
+import Forms from './Forms.js'
 
 function AlbumsList() {
 
     //  пробрасываем со сторы наше значение
     const shows = useSelector(state => state.shows)
-    const result2 = useSelector(state => state.result2)
-
-    // const result = useSelector(state => state. result)
+    const albumslist = useSelector(state => state.albumslist)
 
     const dispatch = useDispatch()
 
     //  инициализируем наши состояния
     const [data, setData] = useState([]);
+    const [data2, setData2] = useState([]);
     const [digit, setdigit] = useState([]);
     const [digit2, setdigit2] = useState([]);
     const params = useParams();
 
 
-    // после того как перешли по урлу с урла получаем паарметр, потом пока компонент не начал рендериться, делаем новый гет запрос по новому урлу
-    // и новый json  после магии ложим в сосояние
     useEffect(() => {
         axios
             .get(`https://jsonplaceholder.typicode.com/albums/${params.id}/photos`)
             .then((response) => {
                 // в наше состяоние положили результат запроса
-                setData(response.data);
+                setData(response.data)
             })
             .catch((error) => {
                 console.log(error);
             });
+    }, []);
 
-    }, [params]);
+    console.log(albumslist)
+
+
+    const add = (title, url) => {
+        //  отправили во внешнем сторе создаем массив добавленных картинок
+        // dispatch({ type: 'add', payload: { title, url }, })
+
+        let result = {
+            id: data.length,
+            title: title,
+            url: url,
+            thumbnailUrl: url
+        }
+        let b = []
+        b[0] = result
+
+
+        setData([...data, ...b])
+        console.log(data)
+
+    }
+
+
+
+
+
 
 
     // функция для работы с модалкой в модалку прокидываем адрес и название
@@ -48,41 +72,34 @@ function AlbumsList() {
         setdigit2(id)
     };
 
+
     // функция для работы с состоянием в редаксе, в редюсере меняет состояние
     const hidewindow = () => {
         dispatch({ type: 'close' })
     }
 
-    const add = (albumId, id, title, url, thumbnailUrl) => {
-        dispatch({ type: 'add', payload:{albumId, id, title, url, thumbnailUrl},  })
-    }
-
 
     const deleteimage = (id) => {
         let result = data.filter(item => item.id !== id)
+        //  ложим результат в хранилице
+
         setData(result)
     };
 
-    console.log(result2)
 
 
     return (
         <>
-            <div>
-
-                <Headercss className={shows ? " " : "showcomponent "} >
+            <div className={shows ? " " : "showcomponent "}>
+                <Headercss  >
                     <NavLink className={shows ? " " : "showcomponent "} to={`/`} >   На главную страницу</NavLink>
                 </Headercss>
-
+                <Forms add={add} />
             </div>
 
-
-
-            {/* блок модального окна, после клика на картинку остальные блоки скрываются, этот компонент отображается  */}
             <div className={shows ? "showcomponent " : " "} >
                 <Modal digitid={digit} digitid2={digit2} />
             </div>
-
 
             <div className={shows ? " " : "showcomponent "} >
                 <Container>
@@ -96,9 +113,7 @@ function AlbumsList() {
                             </Thumbnail>
                             <p >Альбом №{item.albumId}</p>
                             <p>фото номер {item.id}</p>
-                            <Btn onClick={() => { deleteimage(item.id) }}   >   удалить</Btn>
-                             {/* переписать чтобы все получаал с инпутов */}
-                            <Btn onClick={() => add(item.albumId, item.id, item.title, item.url, item.thumbnailUrl)} >  проверить</Btn>
+                            <Btn onClick={() => { deleteimage(item.id) }}>   удалить</Btn>
                         </Img>
                     ))}
                 </Container>

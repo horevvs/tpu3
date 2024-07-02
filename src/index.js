@@ -16,12 +16,14 @@ const reducer = (state = Store, action) => {
 
     case 'add': {
       return {
-        ...state, result2: state.result2.concat(
+        ...state, albums: state.albums.concat(
           action.payload,
         )
       }
     }
 
+  
+   
     default: return state
   }
 };

@@ -12,10 +12,12 @@ const result = await axios.get('https://jsonplaceholder.typicode.com/albums');
 let initstate = {
     // тут храним наши данные с урла
     count: result.data,
-    // этот состояние используем в молаьном окрне чтобы не делать  подъем состояния или usecontext
-    shows: true,
 
-    result2: []
+    // этот состояние используем в молаьном окне чтобы не делать  подъем состояния или usecontext
+    shows: true,
+    albumslist: [],
+    albums: [],
+    
 
 }
 
