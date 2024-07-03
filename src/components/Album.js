@@ -1,6 +1,5 @@
 
 import '../App.css';
-
 import { Container, Headercss, Img, Btn, Thumbnail } from "../StylesComp.js";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
@@ -15,6 +14,7 @@ function AlbumsList() {
     //  пробрасываем со сторы наше значение
     const shows = useSelector(state => state.shows)
     const albums = useSelector(state => state.albums)
+    
 
     const dispatch = useDispatch()
 
@@ -24,32 +24,28 @@ function AlbumsList() {
     const [digit2, setdigit2] = useState([]);
     const params = useParams();
 
-
     useEffect(() => {
         axios
             .get(`https://jsonplaceholder.typicode.com/albums/${params.id}/photos`)
             .then((response) => {
                 // в наше состяоние положили результат запроса
                 // setData(response.data)
-
-                let total= [...response.data, ...albums]
-
-
+                let total = [...response.data, ...albums]
                 let result = total.filter(item => item.albumId !== params.id)
-
                 setData(result)
-                // console.log(total)
-                //  ложим результат в хранилице
-
-
-
-
             })
 
             .catch((error) => {
                 console.log(error);
             });
-    }, [params]);
+    }, []);
+
+
+
+    // useEffect(() => {
+    //     alert('ff')
+    // }, []);
+
 
 
     const add = (title, url) => {
@@ -86,7 +82,8 @@ function AlbumsList() {
     const hidewindow = () => {
         dispatch({ type: 'close' })
     }
-    const deleteimage = (id,albumId ) => {
+    const deleteimage = (id, albumId) => {
+
         let result = data.filter(item => item.id !== id)
 
         dispatch({ type: 'delete', payload: { id, albumId }, })
@@ -119,8 +116,8 @@ function AlbumsList() {
                                 }} width='220' height='140' alt='none' />
                             </Thumbnail>
                             <p >Альбом №{item.albumId}</p>
-                            <p>фото номер {item.id}</p>
-                            <Btn onClick={() => { deleteimage(item.id) }}>   удалить</Btn>
+                            <p>Фото № {item.id}</p>
+                            <Btn onClick={() => { deleteimage(item.id) }}> Удалить</Btn>
                         </Img>
                     ))}
                 </Container>

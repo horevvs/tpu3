@@ -21,7 +21,6 @@ export const FlexContainer = styled.div`
     background-color: #ddd;
     cursor:pointer
     
-    
    }
 `;
 
