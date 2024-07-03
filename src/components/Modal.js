@@ -19,7 +19,7 @@ function Modal(props) {
             <OpemModal>
                 <img src={props.digitid} alt='none' />
                 <p>  номер фотографии {props.digitid2} </p>
-                <Position onClick={hidewindow}>&#x2715;</Position>
+                <Position onClick={hidewindow}> закрыть &#x2715;</Position>
             </OpemModal>
         </>
     );

@@ -14,7 +14,7 @@ function AlbumsList() {
 
     //  пробрасываем со сторы наше значение
     const shows = useSelector(state => state.shows)
-
+    const albums = useSelector(state => state.albums)
 
     const dispatch = useDispatch()
 
@@ -30,8 +30,22 @@ function AlbumsList() {
             .get(`https://jsonplaceholder.typicode.com/albums/${params.id}/photos`)
             .then((response) => {
                 // в наше состяоние положили результат запроса
-                setData(response.data)
+                // setData(response.data)
+
+                let total= [...response.data, ...albums]
+
+
+                let result = total.filter(item => item.albumId !== params.id)
+
+                setData(result)
+                // console.log(total)
+                //  ложим результат в хранилице
+
+
+
+
             })
+
             .catch((error) => {
                 console.log(error);
             });
@@ -40,12 +54,16 @@ function AlbumsList() {
 
     const add = (title, url) => {
         //  отправили во внешнем сторе создаем массив добавленных картинок
-        dispatch({ type: 'add', payload: { title, url }, })
-        let ds = data[data.length-1].id
-       
-        
+        let albumId = Number(params.id)
+
+        // ложим все в наше хранилице
+        let id = data[data.length - 1].id
+        dispatch({ type: 'add', payload: { title, url, albumId, id }, })
+
+        // работаем с нашим состояние в компоненте
         let result = {
-            id:  ds+1,
+            albumId: Number(params.id),
+            id: id + 1,
             title: title,
             url: url,
             thumbnailUrl: url
@@ -68,8 +86,10 @@ function AlbumsList() {
     const hidewindow = () => {
         dispatch({ type: 'close' })
     }
-    const deleteimage = (id) => {
+    const deleteimage = (id,albumId ) => {
         let result = data.filter(item => item.id !== id)
+
+        dispatch({ type: 'delete', payload: { id, albumId }, })
         //  ложим результат в хранилице
 
         setData(result)
@@ -79,7 +99,7 @@ function AlbumsList() {
         <>
             <div className={shows ? " " : "showcomponent "}>
                 <Headercss  >
-                    <NavLink className={shows ? " " : "showcomponent "} to={`/`} >   На главную страницу</NavLink>
+                    <NavLink className={shows ? " " : "showcomponent "} to={`/`} >   На главную страницу</NavLink>  {albums.length}
                 </Headercss>
                 <Forms add={add} />
             </div>

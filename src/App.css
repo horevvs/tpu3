@@ -4,13 +4,27 @@
   display: none;
 }
 
-
 .name{
   background-color: aqua;
 }
 .form-container{
   display: flex;
   justify-content: center;
-}
+  }
+
+.form{
+  display: flex;
+  flex-direction:column;
+  margin: 4px;
+  
+ }
+
+.form div{
+  border:2px solid rgb(88, 72, 72);
+    transition: 1.1s;
+  &:hover {
+  background-color: #ddd;
+  cursor:pointer}
+  }
 
 

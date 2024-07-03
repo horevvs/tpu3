@@ -22,6 +22,13 @@ const reducer = (state = Store, action) => {
       }
     }
 
+    case 'delete': {
+      return {
+        ...state, albums: state.albums.filter(item => item.id !== action.payload.id)
+        
+      }
+    }
+
   
    
     default: return state

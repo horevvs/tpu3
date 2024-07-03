@@ -22,6 +22,5 @@ let initstate = {
 }
 
 
-// console.log(initstate.result2)
 
 export default initstate
