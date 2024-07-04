@@ -8,6 +8,7 @@ import Store from './Store'
 
 
 
+
 const reducer = (state = Store, action) => {
   switch (action.type) {
     case 'close': {
@@ -25,17 +26,18 @@ const reducer = (state = Store, action) => {
     case 'delete': {
       return {
         ...state, albums: state.albums.filter(item => item.id !== action.payload.id & item.albumId !== action.payload.id)
-        
+
       }
     }
+
+
+
     case 'addList': {
-      return { ...state, firstRender: state.firstRender+5
-  
-
+      return {
+        ...state, firstRender: state.firstRender + 5
 
       }
     }
-
 
 
     default: return state

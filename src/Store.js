@@ -1,5 +1,4 @@
 
-
 import axios from 'axios'
 
 
@@ -7,15 +6,16 @@ import axios from 'axios'
 
 let initstate = {
     // тут храним наши данные с урла
-    // count: result.data,
     firstRender: 30,
     count: null,
     // этот состояние используем в молаьном окне чтобы не делать  подъем состояния или usecontext
     shows: true,
     albumslist: [],
     albums: [],
+  
 }
 
+// делаем запрос с определнным количеством которое потом будет отображать
 let result = await axios.get(`https://jsonplaceholder.typicode.com/albums?_limit=${initstate.firstRender}`);
 
 initstate.count = result.data

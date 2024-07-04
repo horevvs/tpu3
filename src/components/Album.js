@@ -14,7 +14,7 @@ function AlbumsList() {
     //  пробрасываем со сторы наше значение
     const shows = useSelector(state => state.shows)
     const albums = useSelector(state => state.albums)
-    
+
 
     const dispatch = useDispatch()
 
@@ -29,7 +29,7 @@ function AlbumsList() {
             .get(`https://jsonplaceholder.typicode.com/albums/${params.id}/photos`)
             .then((response) => {
                 // в наше состяоние положили результат запроса
-                // setData(response.data)
+
                 let total = [...response.data, ...albums]
                 let result = total.filter(item => item.albumId !== params.id)
                 setData(result)
@@ -41,19 +41,12 @@ function AlbumsList() {
     }, []);
 
 
-
-    // useEffect(() => {
-    //     alert('ff')
-    // }, []);
-
-
-
     const add = (title, url) => {
         //  отправили во внешнем сторе создаем массив добавленных картинок
         let albumId = Number(params.id)
 
         // ложим все в наше хранилице
-        let id = data[data.length - 1].id
+        let id = Math.floor(Math.random() * 10000)
         dispatch({ type: 'add', payload: { title, url, albumId, id }, })
 
         // работаем с нашим состояние в компоненте
@@ -96,7 +89,7 @@ function AlbumsList() {
         <>
             <div className={shows ? " " : "showcomponent "}>
                 <Headercss  >
-                    <NavLink className={shows ? " " : "showcomponent "} to={`/`} >   На главную страницу</NavLink>  {albums.length}
+                    <NavLink className={shows ? " " : "showcomponent "} to={`/`} >   На главную страницу</NavLink>
                 </Headercss>
                 <Forms add={add} />
             </div>
