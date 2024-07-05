@@ -5,6 +5,7 @@ import App from './App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import Store from './Store'
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 
@@ -46,7 +47,7 @@ const reducer = (state = Store, action) => {
 
 
 
-const store = createStore(reducer);
+const store = createStore(reducer,composeWithDevTools);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
