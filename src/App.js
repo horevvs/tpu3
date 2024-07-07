@@ -1,10 +1,10 @@
 
 import './App.css';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, } from 'react-router-dom';
 import AlbumsList from "./components/AlbumsList.js";
 import Album from "./components/Album.js";
-
+import Notfound from "./components/Notfound.js";
 
 
 
@@ -14,8 +14,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AlbumsList />} />
-        <Route path=":id" element={<Album />} />
-        <Route path="*" element={<h2>Ресурс не найден</h2>} />
+        <Route path="/dd/:id" element={<Album />} />
+        <Route path="*" element={< Notfound />} />
+     
+
       </Routes>
     </BrowserRouter>
   );

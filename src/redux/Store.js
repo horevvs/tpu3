@@ -6,4 +6,6 @@ import {reducer} from './reducers/reducer'
 
 
 
-export const store=createStore(reducer)
+const Store=createStore(reducer) 
+
+export default Store

@@ -1,6 +1,7 @@
 
 import '../App.css';
 import { Container, Headercss, Img, Btn, Thumbnail } from "../StylesComp.js";
+import { redirect } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -8,6 +9,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import Modal from './Modal.js'
 import Forms from './Forms.js'
+import Notfound from './Notfound.js'
 
 function AlbumsList() {
 
@@ -24,7 +26,15 @@ function AlbumsList() {
     const [digit2, setdigit2] = useState([]);
     const params = useParams();
 
+
+
+
+
     useEffect(() => {
+
+
+
+        
         axios
             .get(`https://jsonplaceholder.typicode.com/albums/${params.id}/photos`)
             .then((response) => {
@@ -38,7 +48,16 @@ function AlbumsList() {
             .catch((error) => {
                 console.log(error);
             });
+
+
+        // if (params.id = 10) {
+        //     return redirect("/Notfound");
+        // }
+
+
+
     }, []);
+
 
 
     const add = (title, url) => {

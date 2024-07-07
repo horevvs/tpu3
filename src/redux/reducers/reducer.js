@@ -20,7 +20,7 @@ let result = await axios.get(`https://jsonplaceholder.typicode.com/albums?_limit
 
 initstate.count = result.data
 
-
+export default initstate
 
 
 export const reducer = (state = initstate, action) => {

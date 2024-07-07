@@ -47,7 +47,7 @@ function AlbumsList() {
                                 Название альбома: <br /> {item.title}
                             </Textcss>
                             {/* переходим по нагашему новому урлу чтобы отобразить  альбом */}
-                            <NavLink to={`/${item.id}`} > Посмотреть альбом №{item.id}</NavLink>
+                            <NavLink to={`/dd/${item.id}`} > Посмотреть альбом №{item.id}</NavLink>
                         </Cartcontainer>
                     </FlexContainer>
                 ))}
