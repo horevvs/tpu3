@@ -15,7 +15,7 @@ function AlbumsList() {
     const firstRender = useSelector(state => state.firstRender)
     const [state, setState] = useState(count);
     const dispatch = useDispatch()
-    
+
     const addRender = () => {
         dispatch({ type: 'addList' })
     }
