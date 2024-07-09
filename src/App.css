@@ -1,0 +1,48 @@
+
+
+.showcomponent{
+  display: none;
+}
+
+.name{
+  background-color: aqua;
+}
+.form-container{
+  display: flex;
+  justify-content: center;
+    }
+
+.form{
+  display: flex;
+  flex-direction:column;
+  margin: 4px;
+  &:hover {
+   cursor:pointer}
+ }
+
+
+ .btn{
+ height: 40px;
+ width: 200px;
+ border:2px solid rgb(88, 72, 72);
+ margin:0 auto;
+ padding-top: 10px;
+ transition: 1.1s;
+ text-align: center;
+ margin-top: 5px;
+ &:hover {
+ background-color: #ddd;
+ cursor:pointer}
+ 
+ }
+
+
+.form div{
+  border:2px solid rgb(88, 72, 72);
+  transition: 1.1s;
+  &:hover {
+  background-color: #ddd;
+  cursor:pointer}
+  }
+
+
